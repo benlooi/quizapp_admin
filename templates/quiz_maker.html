@@ -1,0 +1,63 @@
+<h1>SG50 QuizMaker (alpha) </h1>
+
+<div class="worksheet col-lg-5 col-md-5 col-sm-5 col-xs-5">
+<section>
+	
+	<h2> Enter question </h2>
+	<div class="form-group"> 
+		<input type="text" placeholder="enter question..." ng-model="newqn.qn"  class="form-control">
+	</div>
+	<h2> Enter choice answers </h2>
+	<div class="choices" ng-show="no_choice>=1">
+		<div class="form-group">
+			<input type="text" placeholder="enter answer..." ng-model="newqn.choices['A']"  class="form-control">
+		</div>
+		<div class="form-group">
+		<button class="btn btn-danger" ng-click="addChoice(2)">Add another</button>
+	</div>
+	</div>
+
+	<div class="choices" ng-show="no_choice>=2">
+		<div class="form-group">
+			<input type="text" placeholder="enter answer..." ng-model="newqn.choices['B']"  class="form-control">
+		</div>
+		<div class="form-group">
+		<button class="btn btn-danger" ng-click="addChoice(3)">Add another</button>
+	</div></div>
+
+	<div class="choices" ng-show="no_choice>=3">
+		<div class="form-group">
+			<input type="text" placeholder="enter answer..." ng-model="newqn.choices['C']"  class="form-control">
+		</div>
+		<div class="form-group">
+		<button class="btn btn-danger" ng-click="addChoice(4)">Add another</button>
+	</div></div>
+
+	<div class="choices" ng-show="no_choice>=4">
+		<div class="form-group">
+			<input type="text" placeholder="enter answer..." ng-model="newqn.choices['D']"  class="form-control">
+		</div>
+		
+	</div>
+
+<button ng-click="addQn()">Add to quiz</button>
+
+
+</section>
+
+</div>
+
+<div class="preview col-lg-5 col-md-5 col-sm-5 col-xs-5">
+	<div class="title">Quiz</div>
+	<div id="qns" ng-repeat="(qn, q) in quiz track by $index">
+		<div><h4>Question</h4></div>
+		<h3>{{q.qn}}</h3>
+			<table class="table">
+		<tr><th>Choices</th><th>Answer</th></tr>
+		<tr ng-repeat="(choice,c) in q.choices track by $index"><td>{{c}}</td><td ng-class="{selected:quiz[$parent.$index].ans===choice}"><a ng-click="setAnswer($parent.$index,choice)">Ans</a></td></tr>
+	</table>
+	</div>
+	<button class="btn btn-success">Set quiz!</button>
+	<pre>qn: {{newqn}}</pre>
+<pre>quiz: {{quiz}}</pre>
+</div>
